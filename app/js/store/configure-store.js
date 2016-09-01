@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import {reducer as formReducer} from 'redux-form';
 
-import { loadState, saveState } from './local-storage';
+import { loadState, saveState } from '../adapter/local-storage';
 
 /* REDUCERS */
 import { settings } from '../reducers/settings';

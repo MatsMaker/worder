@@ -38,13 +38,14 @@ if (typeBuild === "production") {
 
 module.exports = {
   entry: {
-    'main': [
-      path.join(__dirname, 'app/js/app.js')
-    ]
+    'popup': [
+      path.join(__dirname, 'app/js/popup.js')
+    ],
+    'background': path.join(__dirname, 'app/js/background.js')
   },
   output: {
     path: outputDir,
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   context: appDir,
   module: {
