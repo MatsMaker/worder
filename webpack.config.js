@@ -12,6 +12,14 @@ var appDir = path.join(__dirname, '/app');
 var typeBuild = process.env.NODE_ENV || "development";
 var outputDir = (typeBuild === "development") ? buildDir : distDir;
 
+var reactDomLibPath = path.join(__dirname, "./node_modules/react-dom/lib");
+var alias = {};
+["EventPluginHub", "EventConstants", "EventPluginUtils", "EventPropagators",
+ "SyntheticUIEvent", "CSSPropertyOperations", "ViewportMetrics"].forEach(function(filename){
+    alias["react/lib/"+filename] = path.join(__dirname, "./node_modules/react-dom/lib", filename);
+});
+
+
 var pluginsList = [
   new CopyWebpackPlugin([{
     from: appDir + "/manifest.json",
@@ -61,6 +69,7 @@ module.exports = {
       loader: ExtractTextPlugin.extract('css!sass')
     }]
   },
+  resolve: {alias: alias},
   plugins: pluginsList,
   devtool: (typeBuild == "development") ? "source-map" : null,
 };
